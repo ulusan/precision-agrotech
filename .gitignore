@@ -1,0 +1,41 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+.env
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# Streamlit
+.streamlit/secrets.toml
+
+# macOS
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Data / büyük dosyalar
+data/raw/
+*.csv
+*.parquet
+*.tif
+*.tiff
+*.geotiff
+
+# Logs
+*.log
+
+# Screenshots / temp
+Ekran\ Resmi*.png
+.coverage

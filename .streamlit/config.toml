@@ -1,0 +1,10 @@
+# Tema — tek doğruluk kaynağı.
+# Koyu tema sabitlenir ki her ortamda (sistem açık/koyu fark etmez) AYNI görünsün = stabil.
+# app.py içindeki CSS bu renklerle uyumludur; sabit hex dayatmaz, bu değişkenleri miras alır.
+[theme]
+base                     = "dark"
+backgroundColor          = "#0a0a0a"   # ana zemin
+secondaryBackgroundColor = "#161616"   # sidebar, kart, tablo zemini (ana zeminden hafif ayrışır)
+textColor                = "#e8e8e8"
+primaryColor             = "#5db82a"    # vurgu yeşili — slider, buton, link
+font                     = "sans serif"

@@ -1,0 +1,34 @@
+# Lokal multi-service kurulum. Phase 0-1'de sadece pipeline servisi var;
+# Phase 2+ icin PostgreSQL+PostGIS ve ODM (OpenDroneMap) yorum satirinda hazir.
+
+services:
+  tarla:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    image: tarla-ai:latest
+    volumes:
+      - ../data:/app/data
+    # Ornek: docker compose run --rm tarla cwsi data/raw/thermal.tif --t-wet 18.5 --t-dry 32
+
+  # --- Phase 2+ (simdilik kapali) ---
+  # postgis:
+  #   image: postgis/postgis:16-3.4
+  #   environment:
+  #     POSTGRES_DB: tarla
+  #     POSTGRES_USER: tarla
+  #     POSTGRES_PASSWORD: change_me
+  #   ports:
+  #     - "5432:5432"
+  #   volumes:
+  #     - pgdata:/var/lib/postgresql/data
+
+  # --- Orthomosaic uretimi (DJI ham fotodan) ---
+  # odm:
+  #   image: opendronemap/odm:latest
+  #   volumes:
+  #     - ../data/raw/drone:/datasets/project/images
+  #     - ../data/interim/odm:/datasets/project/odm_orthophoto
+
+# volumes:
+#   pgdata:
