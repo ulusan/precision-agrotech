@@ -25,6 +25,7 @@ class SoilReport:
     ec_ds_m: float | None = None          # tuzluluk
     calcium_meq: float | None = None
     magnesium_meq: float | None = None
+    caco3_pct: float | None = None        # kireç (CaCO₃)
     zinc_mg_kg: float | None = None
     iron_mg_kg: float | None = None
     copper_mg_kg: float | None = None
@@ -58,15 +59,17 @@ _PATTERNS: list[tuple[str, str]] = [
     ("total_n_pct",     rf"Total\s+N\s*[:\-%]?\s*{_N}"),
     ("total_n_pct",     rf"N\s+\(%\)\s*[:\-]?\s*{_N}"),
 
-    # Fosfor
-    ("phosphorus_kg_ha", rf"[Ff]osfor\s*(?:\(P₂O₅\)|P2O5|P)?\s*[:\-]?\s*{_N}"),
-    ("phosphorus_kg_ha", rf"P(?:₂O₅|2O5)\s*[:\-]?\s*{_N}"),
-    ("phosphorus_kg_ha", rf"Alınabilir\s+P\s*[:\-]?\s*{_N}"),
+    # Fosfor — "Fosfor (P2O5): 5,2", "P₂O₅ 5.2", "Alınabilir P: 5"
+    ("phosphorus_kg_ha", rf"[Ff]osfor\s*\(?\s*P\s*[₂2]\s*O\s*[₅5]\s*\)?\s*[:\-]?\s*{_N}"),
+    ("phosphorus_kg_ha", rf"[Ff]osfor\s*[:\-]?\s*{_N}"),
+    ("phosphorus_kg_ha", rf"P\s*[₂2]\s*O\s*[₅5]\s*[:\-]?\s*{_N}"),
+    ("phosphorus_kg_ha", rf"Alınabilir\s+P\b\s*[:\-]?\s*{_N}"),
 
-    # Potasyum
-    ("potassium_kg_ha", rf"[Pp]otasyum\s*(?:\(K₂O\)|K2O|K)?\s*[:\-]?\s*{_N}"),
-    ("potassium_kg_ha", rf"K(?:₂O|2O)\s*[:\-]?\s*{_N}"),
-    ("potassium_kg_ha", rf"Alınabilir\s+K\s*[:\-]?\s*{_N}"),
+    # Potasyum — "Potasyum (K2O): 38", "K₂O 38", "Alınabilir K: 38"
+    ("potassium_kg_ha", rf"[Pp]otasyum\s*\(?\s*K\s*[₂2]?\s*O?\s*\)?\s*[:\-]?\s*{_N}"),
+    ("potassium_kg_ha", rf"[Pp]otasyum\s*[:\-]?\s*{_N}"),
+    ("potassium_kg_ha", rf"K\s*[₂2]\s*O\s*[:\-]?\s*{_N}"),
+    ("potassium_kg_ha", rf"Alınabilir\s+K\b\s*[:\-]?\s*{_N}"),
 
     # EC / Tuzluluk
     ("ec_ds_m",         rf"EC\s*[:\-]?\s*{_N}"),
@@ -100,6 +103,11 @@ _PATTERNS: list[tuple[str, str]] = [
     # Bor
     ("boron_mg_kg",     rf"[Bb]or\s*(?:\(B\))?\s*[:\-]?\s*{_N}"),
     ("boron_mg_kg",     rf"\bB\b\s*[:\-]?\s*{_N}"),
+
+    # Kireç (CaCO₃)
+    ("caco3_pct",       rf"[Kk]ire[çc]\s*(?:\(CaCO₃\)|\(CaCO3\))?\s*[:\-%]?\s*{_N}"),
+    ("caco3_pct",       rf"CaCO[₃3]\s*[:\-%]?\s*{_N}"),
+    ("caco3_pct",       rf"[Tt]oplam\s+[Kk]ire[çc]\s*[:\-%]?\s*{_N}"),
 
     # CEC
     ("cec_meq",         rf"CEC\s*[:\-]?\s*{_N}"),

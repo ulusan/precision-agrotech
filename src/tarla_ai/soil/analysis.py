@@ -36,6 +36,7 @@ _REPORT_FIELD_MAP: dict[str, str] = {
     "Alınabilir Fosfor (P₂O₅)":   "phosphorus_kg_ha",
     "Alınabilir Potasyum (K₂O)":  "potassium_kg_ha",
     "EC / Tuzluluk":               "ec_ds_m",
+    "Kireç (CaCO₃)":              "caco3_pct",
     "Kalsiyum (Ca)":               "calcium_meq",
     "Magnezyum (Mg)":              "magnesium_meq",
     "Çinko (Zn)":                  "zinc_mg_kg",

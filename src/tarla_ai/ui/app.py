@@ -9,6 +9,7 @@ import streamlit as st
 from tarla_ai.ui.components.bbch_calendar import render_bbch_calendar
 from tarla_ai.ui.components.growth_table import render_growth_table, render_nitrogen_card
 from tarla_ai.ui.components.soil_table import render_soil_table
+from tarla_ai.ui.components.uploaded_data import render_uploaded_drone, render_uploaded_soil
 from tarla_ai.ui.html import cap, section_head, sidebar_head
 from tarla_ai.ui.pdf_view import render_pdf_panel
 from tarla_ai.ui.theme import DASHBOARD_CSS, TOOLTIP_JS
@@ -38,21 +39,22 @@ def run() -> None:
         st.markdown(sidebar_head("Veri Yükle"), unsafe_allow_html=True)
         st.markdown(
             '<div style="font-size:11px;opacity:0.5;line-height:1.6;margin-bottom:12px">'
-            'Toprak analizi ve drone görüntüleri elde edildiğinde buradan yüklenecek. '
-            'Yüklenen değerler aşağıdaki referans aralıklarıyla karşılaştırılacak.'
+            'Toprak analizi PDF\'i ve drone GeoTIFF\'i buradan yükle. '
+            'Yüklenen değerler aşağıda referans aralıklarıyla karşılaştırılır. '
+            'Veri yoksa panel referans modunda kalır.'
             '</div>',
             unsafe_allow_html=True,
         )
-        st.file_uploader(
+        soil_file = st.file_uploader(
             "Toprak analiz raporu (PDF)",
-            type=["pdf"], disabled=True,
-            help="Henüz toprak analizi yapılmadı. Lab raporu hazır olduğunda aktif olacak.",
+            type=["pdf"],
+            help="Metin katmanlı (taranmış değil) lab raporu PDF'i.",
             key="soil_pdf_upload",
         )
-        st.file_uploader(
+        drone_file = st.file_uploader(
             "Drone görüntüsü (GeoTIFF)",
-            type=["tif", "tiff"], disabled=True,
-            help="Henüz uçuş yapılmadı. Termal/RGB GeoTIFF hazır olduğunda aktif olacak.",
+            type=["tif", "tiff"],
+            help="RGB (3 bant) veya termal (tek bant, °C) georeferanslı GeoTIFF.",
             key="geotiff_upload",
         )
         st.divider()
@@ -88,19 +90,28 @@ def run() -> None:
         unsafe_allow_html=True,
     )
 
-    # ── Durum bandı ───────────────────────────────────────────
-    st.markdown(
-        '<div class="status-banner">'
-        '  <div class="status-banner-title">EKİM ÖNCESİ — VERİ BEKLENİYOR</div>'
-        '  <div class="status-banner-body">'
-        '    Tarlaya henüz ekim yapılmadı; toprak analizi ve drone görüntüleri elde edilmedi. '
-        '    Bu panel, Ankara/Bala kıraç koşullarında ekmeklik buğday için <b>olması gereken '
-        '    referans değerleri</b> gösterir. Toprak analizi ve drone uçuşları yapıldığında, '
-        '    ölçülen değerler bu tablolarla karşılaştırılarak gübre/sulama kararları üretilecektir.'
-        '  </div>'
-        '</div>',
-        unsafe_allow_html=True,
-    )
+    # ── Durum bandı — yalnızca hiç veri yüklenmemişse göster ──
+    if soil_file is None and drone_file is None:
+        st.markdown(
+            '<div class="status-banner">'
+            '  <div class="status-banner-title">EKİM ÖNCESİ — VERİ BEKLENİYOR</div>'
+            '  <div class="status-banner-body">'
+            '    Tarlaya henüz ekim yapılmadı; toprak analizi ve drone görüntüleri elde edilmedi. '
+            '    Bu panel, Ankara/Bala kıraç koşullarında ekmeklik buğday için <b>olması gereken '
+            '    referans değerleri</b> gösterir. Toprak analizi ve drone uçuşları yapıldığında, '
+            '    ölçülen değerler bu tablolarla karşılaştırılarak gübre/sulama kararları üretilecektir.'
+            '  </div>'
+            '</div>',
+            unsafe_allow_html=True,
+        )
+
+    # ── Yüklenen gerçek veri (varsa) ──────────────────────────
+    if soil_file is not None:
+        render_uploaded_soil(soil_file.getvalue())
+        st.markdown("<div style='margin-top:36px'></div>", unsafe_allow_html=True)
+    if drone_file is not None:
+        render_uploaded_drone(drone_file.getvalue())
+        st.markdown("<div style='margin-top:36px'></div>", unsafe_allow_html=True)
 
     # ── Tablo 1: Toprak besin referans aralıkları ─────────────
     st.markdown(
