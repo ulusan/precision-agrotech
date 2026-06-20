@@ -13,7 +13,7 @@ from pathlib import Path
 import fitz  # pymupdf
 
 
-@dataclass
+@dataclass(frozen=True)
 class SoilReport:
     """Toprak analizi sonuçları. Tanımlanamayan parametreler None."""
 
@@ -117,32 +117,27 @@ def _to_float(s: str) -> float:
     return float(s.replace(",", "."))
 
 
-def parse_soil_pdf(path: Path | str) -> SoilReport:
-    """PDF toprak analiz raporunu oku ve SoilReport döndür.
-
-    Args:
-        path: PDF dosya yolu.
-
-    Returns:
-        SoilReport — tanımlanamayan alanlar None.
-    """
-    doc = fitz.open(str(path))
-    text = "\n".join(page.get_text() for page in doc)
-    doc.close()
-
-    report = SoilReport(raw_text=text)
-
+def _extract_fields(text: str) -> dict:
+    """PDF metninden tüm alanları çıkar, dict olarak döndür."""
+    fields: dict = {}
     for field_name, pattern in _PATTERNS:
-        if getattr(report, field_name) is not None:
-            continue  # zaten bulundu
+        if field_name in fields:
+            continue
         m = re.search(pattern, text, re.IGNORECASE)
         if m:
             try:
-                setattr(report, field_name, _to_float(m.group(1)))
+                fields[field_name] = _to_float(m.group(1))
             except ValueError:
                 pass
+    return fields
 
-    return report
+
+def parse_soil_pdf(path: Path | str) -> SoilReport:
+    """PDF toprak analiz raporunu oku ve SoilReport döndür."""
+    doc = fitz.open(str(path))
+    text = "\n".join(page.get_text() for page in doc)
+    doc.close()
+    return SoilReport(raw_text=text, **_extract_fields(text))
 
 
 def parse_soil_pdf_bytes(data: bytes) -> SoilReport:
@@ -150,17 +145,4 @@ def parse_soil_pdf_bytes(data: bytes) -> SoilReport:
     doc = fitz.open(stream=data, filetype="pdf")
     text = "\n".join(page.get_text() for page in doc)
     doc.close()
-
-    report = SoilReport(raw_text=text)
-
-    for field_name, pattern in _PATTERNS:
-        if getattr(report, field_name) is not None:
-            continue
-        m = re.search(pattern, text, re.IGNORECASE)
-        if m:
-            try:
-                setattr(report, field_name, _to_float(m.group(1)))
-            except ValueError:
-                pass
-
-    return report
+    return SoilReport(raw_text=text, **_extract_fields(text))

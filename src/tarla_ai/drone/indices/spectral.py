@@ -11,7 +11,7 @@ from __future__ import annotations
 import numpy as np
 from numpy.typing import NDArray
 
-from tarla_ai.indices._common import _normalized_difference
+from tarla_ai.core.math import _normalized_difference
 
 
 def ndvi(nir: NDArray[np.float32], red: NDArray[np.float32]) -> NDArray[np.float32]:
@@ -55,6 +55,6 @@ def lci(
     nir = np.asarray(nir, dtype=np.float32)
     red_edge = np.asarray(red_edge, dtype=np.float32)
     red = np.asarray(red, dtype=np.float32)
-    from tarla_ai.indices._common import EPS
+    from tarla_ai.core.math import EPS
 
     return (nir - red_edge) / (nir + red + EPS)

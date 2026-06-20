@@ -5,7 +5,7 @@ from __future__ import annotations
 import numpy as np
 import pytest
 
-from tarla_ai.indices import cwsi, dual_confirmed_stress, exg, gndvi, lci, ndre, ndvi, tgi, vari
+from tarla_ai.drone.indices import cwsi, dual_confirmed_stress, exg, gndvi, lci, ndre, ndvi, tgi, vari
 
 
 class TestSpectral:

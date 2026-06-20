@@ -11,8 +11,8 @@ import argparse
 from pathlib import Path
 
 from tarla_ai import __version__
-from tarla_ai.indices import cwsi, exg, tgi, vari
-from tarla_ai.io import read_band, read_rgb, write_single_band
+from tarla_ai.drone.indices import cwsi, exg, tgi, vari
+from tarla_ai.core.raster import read_band, read_rgb, write_single_band
 
 
 def _cmd_rgb_indices(args: argparse.Namespace) -> None:
