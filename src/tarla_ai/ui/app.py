@@ -10,9 +10,10 @@ from tarla_ai.ui.components.bbch_calendar import render_bbch_calendar
 from tarla_ai.ui.components.growth_table import render_growth_table, render_nitrogen_card
 from tarla_ai.ui.components.soil_table import render_soil_table
 from tarla_ai.ui.components.uploaded_data import render_uploaded_drone, render_uploaded_soil
+from tarla_ai.ui.components.water_panel import render_water_panel
 from tarla_ai.ui.html import cap, section_head, sidebar_head
 from tarla_ai.ui.pdf_view import render_pdf_panel
-from tarla_ai.ui.theme import DASHBOARD_CSS, TOOLTIP_JS
+from tarla_ai.ui.theme import DASHBOARD_CSS
 
 _PDF_PATH = Path(__file__).parents[3] / "ulusan-agrotech-solutions.pdf"
 
@@ -26,7 +27,6 @@ def run() -> None:
     )
 
     st.markdown(DASHBOARD_CSS, unsafe_allow_html=True)
-    st.markdown(TOOLTIP_JS, unsafe_allow_html=True)
 
     # ── Sidebar ──────────────────────────────────────────────
     with st.sidebar:
@@ -60,8 +60,9 @@ def run() -> None:
         st.divider()
         st.markdown(
             '<div style="font-size:11px;opacity:0.45;line-height:1.6">'
-            'Tarla: Ankara · Bala<br>Ürün: Kışlık ekmeklik buğday<br>Sistem: Kıraç (kuru tarım)<br>'
-            'Durum: Ekim öncesi'
+            'Tarla: Ankara · Bala<br>Ürün: Kışlık ekmeklik buğday/arpa<br>'
+            'Sistem: Kıraç (kuru tarım)<br>'
+            'Sulama: Kuyu (EC 2.90 dS/m)<br>Durum: Ekim öncesi'
             '</div>',
             unsafe_allow_html=True,
         )
@@ -98,54 +99,71 @@ def run() -> None:
             '  <div class="status-banner-body">'
             '    Tarlaya henüz ekim yapılmadı; toprak analizi ve drone görüntüleri elde edilmedi. '
             '    Bu panel, Ankara/Bala kıraç koşullarında ekmeklik buğday için <b>olması gereken '
-            '    referans değerleri</b> gösterir. Toprak analizi ve drone uçuşları yapıldığında, '
-            '    ölçülen değerler bu tablolarla karşılaştırılarak gübre/sulama kararları üretilecektir.'
+            '    referans değerleri</b> gösterir. Sekmelerden ilgili bölüme geçebilirsin; '
+            '    veri yüklendiğinde ölçülen değerler bu tablolarla karşılaştırılır.'
             '  </div>'
             '</div>',
             unsafe_allow_html=True,
         )
 
-    # ── Yüklenen gerçek veri (varsa) ──────────────────────────
-    if soil_file is not None:
-        render_uploaded_soil(soil_file.getvalue())
+    # ── Sekmeler — her domain kendi sekmesinde (modüler) ──────
+    tab_soil, tab_water, tab_drone, tab_cal = st.tabs([
+        "🧪  Toprak",
+        "💧  Sulama Suyu",
+        "🛰️  Drone",
+        "🌱  Takvim & Doküman",
+    ])
+
+    # ── Sekme: Toprak ─────────────────────────────────────────
+    with tab_soil:
+        if soil_file is not None:
+            render_uploaded_soil(soil_file.getvalue())
+            st.markdown("<div style='margin-top:36px'></div>", unsafe_allow_html=True)
+        st.markdown(
+            section_head("Toprak Besin Referans Aralıkları — Buğday (Ankara/Bala Kıraç)"),
+            unsafe_allow_html=True,
+        )
+        render_soil_table()
+
+    # ── Sekme: Sulama Suyu ────────────────────────────────────
+    with tab_water:
+        render_water_panel()
+
+    # ── Sekme: Drone ──────────────────────────────────────────
+    with tab_drone:
+        if drone_file is not None:
+            render_uploaded_drone(drone_file.getvalue())
+        else:
+            st.markdown(
+                '<div style="opacity:0.6;font-size:13px;padding:8px 0">'
+                'Henüz drone görüntüsü yüklenmedi. Soldaki panelden bir GeoTIFF '
+                '(RGB veya termal) yükleyince sahne analizi burada görünür.</div>',
+                unsafe_allow_html=True,
+            )
+
+    # ── Sekme: Takvim & Doküman ───────────────────────────────
+    with tab_cal:
+        st.markdown(
+            section_head("Büyüme Dönemine Göre Azot ve Su İhtiyacı — Kıraç Buğday"),
+            unsafe_allow_html=True,
+        )
+        render_growth_table()
+        render_nitrogen_card()
+
         st.markdown("<div style='margin-top:36px'></div>", unsafe_allow_html=True)
-    if drone_file is not None:
-        render_uploaded_drone(drone_file.getvalue())
-        st.markdown("<div style='margin-top:36px'></div>", unsafe_allow_html=True)
 
-    # ── Tablo 1: Toprak besin referans aralıkları ─────────────
-    st.markdown(
-        section_head("Toprak Besin Referans Aralıkları — Buğday (Ankara/Bala Kıraç)"),
-        unsafe_allow_html=True,
-    )
-    render_soil_table()
+        st.markdown(
+            section_head("Fenolojik Büyüme Takvimi — BBCH Skalası (Referans)"),
+            unsafe_allow_html=True,
+        )
+        render_bbch_calendar()
 
-    st.markdown("<div style='margin-top:36px'></div>", unsafe_allow_html=True)
-
-    # ── Tablo 2: Büyüme dönemine göre N/su ───────────────────
-    st.markdown(
-        section_head("Büyüme Dönemine Göre Azot ve Su İhtiyacı — Kıraç Buğday"),
-        unsafe_allow_html=True,
-    )
-    render_growth_table()
-    render_nitrogen_card()
-
-    st.markdown("<div style='margin-top:36px'></div>", unsafe_allow_html=True)
-
-    # ── BBCH takvimi ──────────────────────────────────────────
-    st.markdown(
-        section_head("Fenolojik Büyüme Takvimi — BBCH Skalası (Referans)"),
-        unsafe_allow_html=True,
-    )
-    render_bbch_calendar()
-
-    # ── PDF önizleme ──────────────────────────────────────────
-    st.markdown("<div style='margin-top:24px'></div>", unsafe_allow_html=True)
-    st.markdown(
-        section_head("Proje Dokümanı — Ulusan AgroTech Solutions 2026"),
-        unsafe_allow_html=True,
-    )
-    render_pdf_panel(_PDF_PATH)
+        st.markdown("<div style='margin-top:24px'></div>", unsafe_allow_html=True)
+        st.markdown(
+            section_head("Proje Dokümanı — Ulusan AgroTech Solutions 2026"),
+            unsafe_allow_html=True,
+        )
+        render_pdf_panel(_PDF_PATH)
 
     # ── Alt bilgi ─────────────────────────────────────────────
     st.markdown(

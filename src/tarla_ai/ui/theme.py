@@ -13,7 +13,6 @@ DASHBOARD_CSS = """
   --ag-line:    rgba(255,255,255,0.08);
   --ag-line-2:  rgba(255,255,255,0.12);
   --ag-fill:    rgba(255,255,255,0.04);
-  --ag-tip-bg:  rgba(15,15,15,0.96);
 }
 
 html, body,
@@ -64,6 +63,34 @@ html, body,
   padding: 18px 20px;
 }
 
+/* ── Sekmeler (st.tabs) — domain ayrımı ── */
+.stTabs [data-baseweb="tab-list"] {
+  gap: 4px;
+  border-bottom: 1px solid var(--ag-line);
+  margin-bottom: 28px;
+}
+.stTabs [data-baseweb="tab"] {
+  height: auto;
+  padding: 10px 20px;
+  background: transparent;
+  border: none;
+  border-radius: 6px 6px 0 0;
+  font-size: 14px; font-weight: 500;
+  color: rgba(232,232,232,0.5);
+  transition: color 0.15s, background 0.15s;
+}
+.stTabs [data-baseweb="tab"]:hover {
+  color: rgba(232,232,232,0.85);
+  background: var(--ag-fill);
+}
+.stTabs [aria-selected="true"] {
+  color: var(--ag-accent) !important;
+  background: rgba(93,184,42,0.07);
+}
+/* Streamlit'in alt-çizgi vurgusu yeşil olsun */
+.stTabs [data-baseweb="tab-highlight"],
+.stTabs [data-baseweb="tab-border"] { background-color: var(--ag-accent) !important; }
+
 /* ── Durum bandı ── */
 .status-banner {
   background: rgba(93,184,42,0.06);
@@ -102,6 +129,30 @@ html, body,
 }
 .ref-note { font-size: 12px; opacity: 0.6; line-height: 1.5; }
 .ref-param { font-weight: 600; }
+
+/* ── "Bu nedir?" açıklama kutusu (st.expander accordion) ── */
+[data-testid="stExpander"] details {
+  background: var(--ag-fill);
+  border: 1px solid var(--ag-line-2);
+  border-left: 3px solid var(--ag-accent);
+  border-radius: 4px; margin-bottom: 20px;
+}
+[data-testid="stExpander"] summary {
+  font-size: 13px; font-weight: 600;
+}
+[data-testid="stExpander"] summary:hover { color: var(--ag-accent); }
+.explainer-body { font-size: 13px; line-height: 1.7; opacity: 0.82; }
+.explainer-body b { opacity: 1; font-weight: 600; }
+.explainer-legend {
+  margin-top: 12px; padding-top: 12px;
+  border-top: 1px dashed var(--ag-line-2);
+  display: flex; flex-wrap: wrap; gap: 16px;
+  font-size: 12px; opacity: 0.75;
+}
+.explainer-legend span { display: inline-flex; align-items: center; gap: 6px; }
+.explainer-dot {
+  width: 9px; height: 9px; border-radius: 50%; display: inline-block;
+}
 .ref-unit { font-size: 11px; opacity: 0.5; font-weight: 400; }
 .ref-unit .has-tip { opacity: 1; }
 
@@ -115,19 +166,58 @@ html, body,
 .stage-pill-mid    { border: 1px solid var(--ag-amber); color: var(--ag-amber); }
 .stage-pill-high   { border: 1px solid var(--ag-red); color: var(--ag-red); }
 
-/* ── Tooltip (fixed-position JS sürücüsü) ── */
-.has-tip { cursor: help; border-bottom: 1px dashed rgba(128,128,128,0.4); }
-#ag-tooltip {
-  display: none; position: fixed; z-index: 99999;
-  max-width: 300px;
-  background: var(--ag-tip-bg);
+/* ── Tooltip — saf CSS (JS yok, anında, Streamlit-safe) ── */
+/* Streamlit st.markdown içindeki <script>'i sterilize ettiği için JS sürücüsü
+   çalışmıyordu; native `title` ise gecikmeli/güvenilmezdi. Bu yüzden saf CSS:
+   data-tip içeriği :hover'da ::after ile gösterilir. Anında açılır, şık kutu.
+   data-tip attribute'unun Streamlit sanitizer'dan geçtiği doğrulandı. */
+.has-tip {
+  cursor: help;
+  border-bottom: 1px dashed rgba(128,128,128,0.45);
+  position: relative;
+}
+.has-tip::after {
+  content: attr(data-tip);
+  position: absolute;
+  bottom: calc(100% + 9px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: max-content; max-width: 280px;
+  background: rgba(20,20,20,0.98);
   border: 1px solid var(--ag-line-2);
-  padding: 11px 14px;
-  font-size: 12.5px; color: #e8e8e8; line-height: 1.6;
-  font-weight: 400; letter-spacing: 0; text-transform: none;
-  backdrop-filter: blur(12px);
+  border-radius: 6px;
+  padding: 10px 13px;
+  font-size: 12.5px; font-weight: 400; line-height: 1.6;
+  letter-spacing: 0; text-transform: none; text-align: left;
+  color: #ededed;
+  white-space: normal;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.45);
+  backdrop-filter: blur(8px);
+  opacity: 0; visibility: hidden;
+  transition: opacity 0.12s ease, visibility 0.12s;
+  z-index: 9999;
   pointer-events: none;
 }
+/* küçük ok (kutunun altında) */
+.has-tip::before {
+  content: "";
+  position: absolute;
+  bottom: calc(100% + 3px);
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-top-color: rgba(20,20,20,0.98);
+  opacity: 0; visibility: hidden;
+  transition: opacity 0.12s ease, visibility 0.12s;
+  z-index: 9999;
+  pointer-events: none;
+}
+.has-tip:hover::after,
+.has-tip:hover::before { opacity: 1; visibility: visible; }
+.has-tip-wide::after { max-width: 360px; }
+/* Tablo başlık hücrelerinde tooltip sola hizalı kalsın (kenarda taşmasın) */
+.ref-table th:first-child .has-tip::after { left: 0; transform: none; }
+.ref-table th:first-child .has-tip::before { left: 16px; transform: none; }
 
 /* ── BBCH Diyagram ── */
 .bbch-track {
@@ -207,32 +297,4 @@ html, body,
 .pdf-wrap { border: 1px solid var(--ag-line-2); }
 .pdf-wrap img { display: block; width: 100%; }
 </style>
-"""
-
-TOOLTIP_JS = """
-<div id="ag-tooltip"></div>
-<script>
-(function(){
-  const box = document.getElementById('ag-tooltip');
-  if (!box) return;
-  document.addEventListener('mouseover', e => {
-    const el = e.target.closest('.has-tip');
-    if (!el) return;
-    box.textContent = el.getAttribute('data-tip');
-    box.style.display = 'block';
-  });
-  document.addEventListener('mouseout', e => {
-    if (!e.target.closest('.has-tip')) return;
-    box.style.display = 'none';
-  });
-  document.addEventListener('mousemove', e => {
-    if (box.style.display === 'none') return;
-    const bw = box.offsetWidth, vw = window.innerWidth;
-    let x = e.clientX + 14;
-    if (x + bw > vw - 12) x = e.clientX - bw - 14;
-    box.style.left = x + 'px';
-    box.style.top  = (e.clientY + 18) + 'px';
-  });
-})();
-</script>
 """
