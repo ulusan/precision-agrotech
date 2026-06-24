@@ -6,7 +6,9 @@ from pathlib import Path
 
 import streamlit as st
 
+from tarla_ai.ui.components.advisory_panel import render_advisory_panel
 from tarla_ai.ui.components.bbch_calendar import render_bbch_calendar
+from tarla_ai.ui.components.climate_panel import render_climate_panel
 from tarla_ai.ui.components.growth_table import render_growth_table, render_nitrogen_card
 from tarla_ai.ui.components.soil_table import render_soil_table
 from tarla_ai.ui.components.uploaded_data import render_uploaded_drone, render_uploaded_soil
@@ -60,7 +62,7 @@ def run() -> None:
         st.divider()
         st.markdown(
             '<div style="font-size:11px;opacity:0.45;line-height:1.6">'
-            'Tarla: Ankara · Bala<br>Ürün: Kışlık ekmeklik buğday/arpa<br>'
+            'Tarla: Bala · Bahçekaradalak<br>Ürün: Kışlık ekmeklik buğday/arpa<br>'
             'Sistem: Kıraç (kuru tarım)<br>'
             'Sulama: Kuyu (EC 2.90 dS/m)<br>Durum: Ekim öncesi'
             '</div>',
@@ -107,12 +109,18 @@ def run() -> None:
         )
 
     # ── Sekmeler — her domain kendi sekmesinde (modüler) ──────
-    tab_soil, tab_water, tab_drone, tab_cal = st.tabs([
+    tab_advisory, tab_soil, tab_water, tab_climate, tab_drone, tab_cal = st.tabs([
+        "📋  Ne Yapmalı?",
         "🧪  Toprak",
         "💧  Sulama Suyu",
+        "🌤️  Hava Durumu",
         "🛰️  Drone",
         "🌱  Takvim & Doküman",
     ])
+
+    # ── Sekme: Ne Yapmalı? (öneriler) ─────────────────────────────
+    with tab_advisory:
+        render_advisory_panel()
 
     # ── Sekme: Toprak ─────────────────────────────────────────
     with tab_soil:
@@ -128,6 +136,10 @@ def run() -> None:
     # ── Sekme: Sulama Suyu ────────────────────────────────────
     with tab_water:
         render_water_panel()
+
+    # ── Sekme: Hava Durumu ────────────────────────────────────
+    with tab_climate:
+        render_climate_panel()
 
     # ── Sekme: Drone ──────────────────────────────────────────
     with tab_drone:

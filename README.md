@@ -19,8 +19,8 @@ uv sync
 # 3) Testleri calistir
 uv run pytest
 
-# 4) Sentetik uctan-uca demo
-uv run python scripts/01_synthetic_demo.py
+# 4) Uygulamayi baslat (dashboard)
+uv run streamlit run app.py
 ```
 
 GDAL/PROJ sistem bagimliliklari yuzunden lokal `uv sync` takilirsa Docker'a gec:

@@ -6,8 +6,6 @@ import streamlit as st
 
 from tarla_ai.agronomy.bbch import BBCH_STAGES
 
-START_IDX = 0
-
 _BADGE_COLOR = {
     "green": "var(--ag-accent)",
     "amber": "var(--ag-amber)",
@@ -18,17 +16,14 @@ _BADGE_COLOR = {
 def render_bbch_calendar() -> None:
     """BBCH takvim diyagramını ve seçili aşama detay panelini render eder."""
     if "bbch_sel" not in st.session_state:
-        st.session_state.bbch_sel = START_IDX
+        st.session_state.bbch_sel = 0  # yalnızca varsayılan seçili sekme; durum iddiası değil
 
     cols = st.columns(len(BBCH_STAGES))
     for i, stage in enumerate(BBCH_STAGES):
-        if i == START_IDX:
-            dot_cls = "bbch-dot bbch-dot-start"
-            lbl_cls = "bbch-label bbch-label-start"
-        else:
-            dot_cls = "bbch-dot bbch-dot-future"
-            lbl_cls = "bbch-label bbch-label-future"
-
+        # Tüm aşamalar eşit referans noktasıdır; hiçbiri "başlangıç/güncel" diye
+        # vurgulanmaz (saha verisi yok). Yalnızca seçili olan dış çizgiyle belirir.
+        dot_cls = "bbch-dot bbch-dot-future"
+        lbl_cls = "bbch-label bbch-label-future"
         if i == st.session_state.bbch_sel:
             dot_cls += " bbch-dot-selected"
 
@@ -61,7 +56,7 @@ def render_bbch_calendar() -> None:
 
     st.markdown(
         f'<div class="bbch-detail">'
-        f'  <div class="bbch-detail-code">BBCH {s.code}{"  ·  SONRAKİ AŞAMA" if sel == START_IDX else ""}</div>'
+        f'  <div class="bbch-detail-code">BBCH {s.code}  ·  REFERANS</div>'
         f'  <div class="bbch-detail-title" style="color:{_BADGE_COLOR[urgency]}">{s.name}</div>'
         f'  <div class="bbch-detail-body">{s.description}</div>'
         f'  <div class="bbch-detail-tasks">'
@@ -72,6 +67,8 @@ def render_bbch_calendar() -> None:
         unsafe_allow_html=True,
     )
     st.markdown(
-        '<div class="ag-hint">Bir aşamaya tıklayarak o dönemin görevlerini ve detaylarını görüntüleyebilirsin.</div>',
+        '<div class="ag-hint">Bir aşamaya tıklayarak o dönemin görevlerini ve '
+        'detaylarını görüntüleyebilirsin. Bu takvim referanstır — saha verisiyle '
+        'hesaplanmış güncel aşama değildir.</div>',
         unsafe_allow_html=True,
     )
