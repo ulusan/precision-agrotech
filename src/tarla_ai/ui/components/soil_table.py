@@ -61,28 +61,41 @@ PARAM_TIPS: dict[str, str] = {
     "Çinko (Zn)": (
         "Protein sentezi ve enzim üretimi için gerekli iz element. "
         "'İz element' demek çok az miktarda gerekli demek. "
-        "Kritik eşik 0.5 ppm (çok küçük bir miktar). "
-        "İç Anadolu'nun kireçli topraklarında Zn eksikliği çok yaygındır. "
-        "Eksiklikte başak gelişimi durur, verim belirgin düşer."
+        "Yeterlilik eşiği 0.7 ppm (Silanpää 1990). "
+        "Bölgesel referans (Haymana/Bala çevresi, A.Ü. 2015): kireç-Zn antagonizması nedeniyle "
+        "alandaki toprakların %16.5'inde Zn az sınıfında bulunmuştur. "
+        "Pilot tarlanın Zn durumu ancak toprak analizi yüklenince netleşir. "
+        "ZnSO₄ uygulaması bu bölgede sıkça önerilir."
     ),
     "Demir (Fe)": (
         "Klorofil üretimi ve nefes alma (solunum) için gerekli iz element. "
         "Eksikliğinde genç yapraklar sararır, damarcıklar yeşil kalır (kloroz). "
-        "Yüksek kireçli alkali topraklarda Fe bitkiye geçemez; kritik eşik 4.5 ppm."
+        "Lindsay-Norvell 1978: <2.5 az, 2.5–4.5 orta, >4.5 yeterli. "
+        "Bölgesel referans (Haymana/Bala çevresi, A.Ü. 2015): incelenen tüm parsellerde "
+        "Fe yetersiz çıkmıştır — yüksek kireç ve alkali pH'nın tipik sonucu. "
+        "Pilot tarlanın Fe durumu toprak analizi yüklenince görülür; "
+        "bu eşikler o sonucu yorumlamak için kullanılır."
     ),
     "Bakır (Cu)": (
         "Fotosentez ve protein oluşumuna katkıda bulunan iz element. "
-        "Kritik eşik 0.2 ppm. Eksikliği bölgede nadirdir."
+        "Yeterlilik eşiği 0.2 ppm (Follett 1969). "
+        "Bölgesel referans (Haymana/Bala çevresi, A.Ü. 2015): Cu genelde yeterli sınıfında; "
+        "eksiklik nadirdir. Pilot tarla için toprak analizi teyit eder."
     ),
     "Mangan (Mn)": (
         "Fotosentezde su molekülünü parçalayan enzimin temel bileşeni. "
-        "Kritik eşik 1.0 ppm. Alkali kireçli topraklarda sınırda olabilir."
+        "Yeterlilik eşiği 14 ppm (Silanpää 1990); <4 ppm az sınıfı. "
+        "Bölgesel referans (Haymana/Bala çevresi, A.Ü. 2015): incelenen tüm parsellerde "
+        "Mn yetersiz bulunmuştur — alkali kireçli toprakların kronik sorunu. "
+        "Pilot tarlanın Mn durumu toprak analizi yüklenince netleşir."
     ),
     "Bor (B)": (
         "Hücre büyümesi, tane bağlama ve şeker taşıması için gerekli iz element. "
-        "İlginç bir özelliği: eksikliği de toksisitesi (zehirliliği) de zararlıdır — "
-        "çok dar bir 'iyi aralık' vardır. "
-        "İç Anadolu'nun bazı bölgelerinde toprakta bor fazlalığı görülür (>2 ppm dikkat)."
+        "İlginç bir özelliği: eksikliği de toksisitesi (zehirliliği) de zararlıdır. "
+        "Yeterlilik aralığı 1.0–2.4 ppm (Wolf 1971). "
+        "Bölgesel referans (Haymana/Bala çevresi, A.Ü. 2015): parsellerin %95.9'unda "
+        "B yetersiz (<0.9 ppm) bulunmuştur. "
+        "Pilot tarlanın B durumu toprak analizi yüklenince görülür."
     ),
     "Katyon Değişim Kap. (CEC)": (
         "Toprağın besin maddelerini tutma kapasitesi. "
@@ -145,8 +158,13 @@ def render_soil_table() -> None:
         unsafe_allow_html=True,
     )
     st.markdown(
-        cap("Kaynaklar: TAGEM gübre tavsiye sistemi · Toprak Gübre ve Su Kaynakları Merkez Araştırma Enstitüsü · "
-            "MEGEP toprak verimlilik standartları · Lindsay-Norvell DTPA kritik düzeyleri. "
-            "Değerler referans/yorumlama amaçlıdır; kesin gübre dozu için parselden alınan güncel toprak analizi şarttır."),
+        cap(
+            "Kaynaklar: Ülgen &amp; Yurtsever 1974/1995 (Türkiye Gübre Rehberi) · Richards 1954 · "
+            "Hızalan &amp; Ünal 1966 · Lindsay &amp; Norvell 1978 (DTPA) · Silanpää 1990 · Wolf 1971 · "
+            "Soba ve ark. 2015 (Haymana A.Ü. Çiftliği — Bala komşusu; 65 örnek saha verisi) · "
+            "Dr. Elif Öztürk, Karadeniz TARE 2021. "
+            "Eşikler Bahçekaradalak/Bala pilot tarlası için kalibre edilmiştir. "
+            "Kesin gübre dozu için parselden alınan güncel toprak analizi şarttır."
+        ),
         unsafe_allow_html=True,
     )

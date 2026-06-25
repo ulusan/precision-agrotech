@@ -1,7 +1,7 @@
 """Kuyu suyu referans paneli — kalıcı sulama kaynağı kaydı.
 
 Dashboard'da her zaman görünür: pilot tarlanın tek sulama kaynağı olan
-kuyu suyunun analiz değerlerini (su-analiz.pdf) FAO eşikleriyle karşılaştırır.
+kuyu suyunun analiz değerlerini (data/uploads/water/su-analiz.pdf) FAO eşikleriyle karşılaştırır.
 Ölçülmeyen parametreler "veri yok" olarak açıkça gösterilir — uydurulmaz.
 """
 

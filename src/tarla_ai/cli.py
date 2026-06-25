@@ -1,8 +1,8 @@
 """tarla_ai komut satiri arayuzu.
 
 Kullanim:
-    tarla rgb-indices  rgb_orthomosaic.tif  --out-dir data/processed
-    tarla cwsi  thermal.tif  --t-wet 18.5 --t-dry 32.0 --out data/processed/cwsi.tif
+    tarla rgb-indices  data/uploads/drone/rgb.tif  --out-dir data/processed
+    tarla cwsi  data/uploads/drone/thermal.tif  --t-wet 18.5 --t-dry 32.0 --out data/processed/cwsi.tif
 """
 
 from __future__ import annotations

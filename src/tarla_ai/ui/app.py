@@ -17,7 +17,7 @@ from tarla_ai.ui.html import cap, section_head, sidebar_head
 from tarla_ai.ui.pdf_view import render_pdf_panel
 from tarla_ai.ui.theme import DASHBOARD_CSS
 
-_PDF_PATH = Path(__file__).parents[3] / "ulusan-agrotech-solutions.pdf"
+_PDF_PATH = Path(__file__).parents[3] / "docs" / "references" / "ulusan-agrotech-solutions.pdf"
 
 
 def run() -> None:

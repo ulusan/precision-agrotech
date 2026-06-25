@@ -7,9 +7,9 @@
    sınıflandırması C1–C4). Buğday/arpa tuzluluk toleransı dahil.
 
 2. WELL_WATER_BASELINE — pilot tarlanın KALICI kuyu suyu kaydı
-   (su-analiz.pdf, Ankara Üniv. Ziraat Fak., Rapor No TAR-2024-0004,
-   onay 07.05.2024). Bu kayıt değişmez referans katmandır; ölçülmeyen
-   parametreler None'dur ve uydurulmaz.
+   (data/uploads/water/su-analiz.pdf, Ankara Üniv. Ziraat Fak.,
+   Rapor No TAR-2024-0004, onay 07.05.2024). Bu kayıt değişmez
+   referans katmandır; ölçülmeyen parametreler None'dur ve uydurulmaz.
 
 Kaynaklar: FAO Irrigation and Drainage Paper 29 (Ayers & Westcot, 1985),
 USDA Handbook 60 tuzluluk sınıfları, Maas-Hoffman bitki tuz toleransı.
@@ -87,7 +87,7 @@ WATER_REFERENCE: list[WaterReference] = [
 ]
 
 
-# ── Kalıcı kuyu suyu kaydı (su-analiz.pdf) ──────────────────────────────────
+# ── Kalıcı kuyu suyu kaydı (data/uploads/water/su-analiz.pdf) ───────────────
 # Ankara Üniversitesi Ziraat Fakültesi, Rapor No TAR-2024-0004, onay 07.05.2024.
 # Müşteri: Abdullah Ulusan, Üçem Köyü, Bala/Ankara.
 # Yalnızca pH ve EC ölçülmüştür; diğer parametreler raporda YOK = None.

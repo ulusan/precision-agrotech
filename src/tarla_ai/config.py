@@ -29,26 +29,44 @@ class Settings(BaseSettings):
 
     data_dir: Path = REPO_ROOT / "data"
 
-    # Hedef koordinat sistemi - Turkiye geneli icin UTM Zone 35N / 36N veya
-    # tek tarla pilot icin parselin bulundugu zona gore secilir.
-    # Varsayilan: WGS84 (kaynak veriden geldigi gibi); is akisinda projelendirilir.
+    # Hedef koordinat sistemi
     target_crs: str = "EPSG:4326"
 
+    # ── Kullanıcı yüklemeleri (UI'dan gelen analizler) ─────────────────────
     @property
-    def raw_dir(self) -> Path:
-        return self.data_dir / "raw"
+    def uploads_dir(self) -> Path:
+        return self.data_dir / "uploads"
 
     @property
-    def interim_dir(self) -> Path:
-        return self.data_dir / "interim"
+    def soil_uploads_dir(self) -> Path:
+        return self.uploads_dir / "soil"
 
+    @property
+    def water_uploads_dir(self) -> Path:
+        return self.uploads_dir / "water"
+
+    @property
+    def drone_uploads_dir(self) -> Path:
+        return self.uploads_dir / "drone"
+
+    # ── CLI / pipeline çıktıları ────────────────────────────────────────────
     @property
     def processed_dir(self) -> Path:
         return self.data_dir / "processed"
 
+    # ── Referans belgeler (sadece okunur, commit edilir) ────────────────────
+    @property
+    def references_dir(self) -> Path:
+        return REPO_ROOT / "docs" / "references"
+
     def ensure_dirs(self) -> None:
-        """Veri dizinlerini olustur (yoksa)."""
-        for d in (self.raw_dir, self.interim_dir, self.processed_dir):
+        """Veri dizinlerini oluştur (yoksa)."""
+        for d in (
+            self.soil_uploads_dir,
+            self.water_uploads_dir,
+            self.drone_uploads_dir,
+            self.processed_dir,
+        ):
             d.mkdir(parents=True, exist_ok=True)
 
 

@@ -1,41 +1,68 @@
-# Python
+# ── Python ────────────────────────────────────────────────────────────────────
 __pycache__/
 *.py[cod]
 *.pyo
-.venv/
-venv/
-.env
 *.egg-info/
 dist/
 build/
+
+# ── Sanal ortam ───────────────────────────────────────────────────────────────
+.venv/
+venv/
+
+# ── Ortam değişkenleri / sırlar ───────────────────────────────────────────────
+.env
+.env.*
+.streamlit/secrets.toml
+
+# ── Araç önbellekleri ─────────────────────────────────────────────────────────
 .pytest_cache/
 .ruff_cache/
 .mypy_cache/
-
-# Streamlit
-.streamlit/secrets.toml
-
-# macOS
-.DS_Store
-
-# IDE
-.vscode/
-.idea/
-
-# Jupyter
 .ipynb_checkpoints/
 
-# Data / büyük dosyalar
-data/raw/
-*.csv
-*.parquet
+# ── IDE ───────────────────────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ── macOS ─────────────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+
+# ── Kullanıcı yüklemeleri (kişisel analiz dosyaları) ─────────────────────────
+# Klasör iskeletini koruyan .gitkeep dosyaları commit edilir.
+data/uploads/soil/*
+data/uploads/water/*
+data/uploads/drone/*
+!data/**/.gitkeep
+
+# ── Pipeline çıktıları ────────────────────────────────────────────────────────
+data/processed/*
+!data/processed/.gitkeep
+
+# ── Büyük / binary veri dosyaları ─────────────────────────────────────────────
 *.tif
 *.tiff
 *.geotiff
+*.csv
+*.parquet
+*.h5
+*.hdf5
+*.pkl
+*.npy
+*.npz
 
-# Logs
+# ── Loglar ────────────────────────────────────────────────────────────────────
 *.log
+logs/
 
-# Screenshots / temp
+# ── Geçici dosyalar ───────────────────────────────────────────────────────────
+*.tmp
+*.bak
 Ekran\ Resmi*.png
+
+# ── Coverage ──────────────────────────────────────────────────────────────────
 .coverage
+htmlcov/
