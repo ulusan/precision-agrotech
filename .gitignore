@@ -27,6 +27,9 @@ venv/
 *.swp
 *.swo
 
+# ── Claude Code memory (yerel, kişisel) ──────────────────────────────────────
+.claude/
+
 # ── macOS ─────────────────────────────────────────────────────────────────────
 .DS_Store
 Thumbs.db
