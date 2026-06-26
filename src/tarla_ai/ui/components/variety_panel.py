@@ -4,6 +4,8 @@ Kaynaklar:
 - TARM Çeşit Kataloğu 2025 (Tarla Bitkileri Merkez Araştırma Enstitüsü, Ankara)
 - TARM Çeşit Kataloğu 2014 (Gıda Tarım ve Hayvancılık Bakanlığı / TARM, Ankara)
 - Tekcan Tohum ürün sayfası (Hamza çeşidi)
+- Bahri Dağdaş Uluslararası Tarımsal Araştırma Enstitüsü ürün broşürü (Taner, 2018)
+- Tarar Un ve Gıda San. ürün sayfası — tararun.com.tr (Enola, tescil 2016)
 
 Pilot tarla: Bahçekaradalak / Bala / Ankara — kıraç, killi-tınlı, İç Anadolu step iklimi.
 Hiçbir değer uydurulmaz; kaynakta olmayan alan "—" gösterilir.
@@ -59,10 +61,11 @@ VARIETIES: list[VarietyInfo] = [
             "Orta-geç olgunlaşma."
         ),
         kaynak="Tekcan Tohum ürün sayfası",
-        uyumluluk_skoru=5,
+        uyumluluk_skoru=4,
         uyumluluk_not=(
-            "Bala/Ankara kuru şartlarına doğrudan önerilen çeşit. "
-            "İç Anadolu kıraç bölgesi için üretici tarafından özellikle tavsiye edilmektedir."
+            "İç Anadolu kıraç için üretici tarafından özellikle tavsiye edilmiş. "
+            "Ancak TARM/resmi deneme verisi yok — tescil yılı ve resmi kuru verim belgesi belirsiz. "
+            "Güçlü aday; resmi kaynaklı çeşitlerle (Bayram, Taner) birlikte değerlendirilmeli."
         ),
     ),
     # ── BAYRAM (TARM 2020) ────────────────────────────────────────────────
@@ -87,10 +90,10 @@ VARIETIES: list[VarietyInfo] = [
         kaynak="TARM Kataloğu 2025 + TK Tohum (tktohum.com.tr)",
         uyumluluk_skoru=5,
         uyumluluk_not=(
-            "Tarım Kredi ve TARM çift onaylı — İç ve Geçit kıraç için birinci öncelik. "
-            "En yüksek protein oranı (%14.5–17.6) + 1. sınıf ekmeklik kalite. "
-            "Tescil denemelerinde ortalama 560 kg/da, tepe 752.9 kg/da. "
-            "Bala kıraç koşulları için en güçlü aday."
+            "TARM 2020 tescilli, kıraç+taban her ikisi için de önerilen nadir çeşit. "
+            "Kuru verim bandı en yüksek (450-550 kg/da) — rakiplerinin üzerinde. "
+            "Protein %14.5-17.6 + 1. sınıf ekmeklik; Tarım Kredi ve TARM çift onaylı. "
+            "Bala kıraç koşulları için en güçlü resmi aday."
         ),
     ),
     # ── SELAMİBEY (TARM 2020) ────────────────────────────────────────────
@@ -113,8 +116,9 @@ VARIETIES: list[VarietyInfo] = [
         kaynak="TARM Çeşit Kataloğu 2025",
         uyumluluk_skoru=5,
         uyumluluk_not=(
-            "Bayram ile eşit kuru verim bandı. Su kullanım etkinliği yüksek olması "
-            "kıraç koşullar için kritik avantaj."
+            "TARM 2020, Orta Anadolu kıraç tescilli. Kuru 450-550 kg/da, Bayram ile eşit. "
+            "Su kullanım etkinliği yüksek — kıraç için kritik avantaj. "
+            "Sarı pas 'orta dayanıklı'; Bayram'ın 'toleranslı'sına kıyasla hafif dezavantaj."
         ),
     ),
     # ── FAZILBEY (TARM 2020) ─────────────────────────────────────────────
@@ -134,10 +138,11 @@ VARIETIES: list[VarietyInfo] = [
             "su kullanım etkinliği yüksek, yatmaya dayanıklı, tane dökmeyen."
         ),
         kaynak="TARM Çeşit Kataloğu 2025",
-        uyumluluk_skoru=4,
+        uyumluluk_skoru=3,
         uyumluluk_not=(
-            "İyi kuru verim, ancak protein oranı düşük (%10-12). "
-            "Ekmeklik kalite öncelikli değilse güçlü alternatif."
+            "Orta Anadolu kıraç tescilli, kuru verim 375-450 kg/da makul. "
+            "Protein %10-12 — ekmeklik buğday için düşük; TMO 2. baremi riski. "
+            "Kalite değil verim hedefleniyorsa düşünülebilir, ama Bayram/Selamibey önde."
         ),
     ),
     # ── KÜRŞAD (TARM 2020) ────────────────────────────────────────────────
@@ -158,11 +163,11 @@ VARIETIES: list[VarietyInfo] = [
             "Alveograf enerjisi 301–456 J — çok güçlü ekmeklik kalitesi."
         ),
         kaynak="TARM Çeşit Kataloğu 2025",
-        uyumluluk_skoru=4,
+        uyumluluk_skoru=3,
         uyumluluk_not=(
-            "En yüksek protein oranlarından biri (%15-16). "
-            "Ekmeklik kalite ve güçlü gluten arıyorsanız ideal. "
-            "Geç başaklanma yağışlı yıllarda avantaj sağlar."
+            "Orta Anadolu kıraç tescilli, yüksek protein (%15-16) + güçlü gluten (W 301-456 J). "
+            "Kuru verim tavanı (450 kg/da) Bayram'ın altında. Geç başaklanma kıraçta risk — "
+            "Bala'da Nisan-Mayıs kuraklığına yakalanabilir. Kalite öncelikli ise değerlendir."
         ),
     ),
     # ── ŞANLI (TARM 2016) ────────────────────────────────────────────────
@@ -182,10 +187,11 @@ VARIETIES: list[VarietyInfo] = [
             "dayanıklı. Gübreye tepkisi yüksek, yüksek tane ve sap verimine sahip."
         ),
         kaynak="TARM Çeşit Kataloğu 2025",
-        uyumluluk_skoru=4,
+        uyumluluk_skoru=3,
         uyumluluk_not=(
-            "Geniş verim bandı ve yüksek hektolitre. Taban/yarı taban alanlar için "
-            "daha iyi; Bala kıraç bölgelerde orta öncelik."
+            "Tavsiye bölgesi 'taban ve yarı taban' — kıraç için birincil öneri değil. "
+            "Kuru verim 400-540 kg/da makul ama bölge etiketlemesi Bala kıraç için dezavantaj. "
+            "Hektolitre yüksek (77-82), kalite iyi; kıraç parselde ikincil seçenek."
         ),
     ),
     # ── AYTEN ABLA (TARM 2019) ────────────────────────────────────────────
@@ -207,8 +213,9 @@ VARIETIES: list[VarietyInfo] = [
         kaynak="TARM Çeşit Kataloğu 2025",
         uyumluluk_skoru=4,
         uyumluluk_not=(
-            "Orta Anadolu kıraç için tescilli. Alveograf enerjisi 167–280 J, "
-            "orta-iyi ekmeklik kalitesi."
+            "Orta Anadolu kıraç için TARM 2019 tescilli — bölge etiketlemesi doğru. "
+            "Kuru verim 300-450 kg/da, geniş bant. Sarı pas 'orta dayanıklı', "
+            "ilaçlama gerekebilir. Bayram/Selamibey'in hafif gerisinde ama güvenilir seçenek."
         ),
     ),
     # ── ÇAVUŞ (TARM 2019) ─────────────────────────────────────────────────
@@ -230,8 +237,9 @@ VARIETIES: list[VarietyInfo] = [
         kaynak="TARM Çeşit Kataloğu 2025",
         uyumluluk_skoru=4,
         uyumluluk_not=(
-            "En güçlü gluten kalitelerinden biri (W: 300-538 J). "
-            "Yüksek protein ve sert tane. Kuru verim Bayram'dan biraz düşük."
+            "Orta Anadolu kıraç tescilli, sarı pasa toleranslı — ilaç tasarrufu. "
+            "Kuru alt sınır 280 kg/da düşük; kötü yıllarda riskli. "
+            "Gluten kalitesi (W 300-538 J) çok güçlü — kalite+kıraç dengesini isteyene uygun."
         ),
     ),
     # ── DEMİRHAN (TARM 2019) ──────────────────────────────────────────────
@@ -251,10 +259,11 @@ VARIETIES: list[VarietyInfo] = [
             "su kullanım etkinliği yüksek, yatmaya dayanıklı."
         ),
         kaynak="TARM Çeşit Kataloğu 2025",
-        uyumluluk_skoru=3,
+        uyumluluk_skoru=2,
         uyumluluk_not=(
-            "Sarı pasa dayanıklı (diğerleri toleranslı/orta). "
-            "Verim diğerlerine göre daha düşük. Hastalık baskısı yüksek yıllarda öne çıkar."
+            "Kuru verim tavanı 380 kg/da — 22 çeşit arasında en düşüklerden. "
+            "Orta Anadolu kıraç tescilli olsa da verim rakiplerin belirgin altında. "
+            "Sarı pasa dayanıklılığı tek avantajı; Bala kıraç için öncelikli seçenek değil."
         ),
     ),
     # ── AYAZ (TARM 2020) ──────────────────────────────────────────────────
@@ -274,10 +283,12 @@ VARIETIES: list[VarietyInfo] = [
             "yatmaya dayanıklı, tane dökmeyen."
         ),
         kaynak="TARM Çeşit Kataloğu 2025",
-        uyumluluk_skoru=3,
+        uyumluluk_skoru=2,
         uyumluluk_not=(
-            "Yüksek protein (%15-16.2) ancak hektolitre görece düşük. "
-            "Verim potansiyeli orta — kalite öncelikli parseller için düşünülebilir."
+            "Kuru verim 300-400 kg/da — kıraç için orta düzey. "
+            "Hektolitre 69.9-76.1 görece düşük; sarı pas 'toleranslı'. "
+            "Protein yüksek (%15-16.2) ama kıraç verim performansı yetersiz. "
+            "Bala koşullarında öncelikli seçenek değil."
         ),
     ),
     # ── ERBAŞ (TARM 2021) ─────────────────────────────────────────────────
@@ -298,10 +309,11 @@ VARIETIES: list[VarietyInfo] = [
             "Kırmızı taneli."
         ),
         kaynak="TARM Çeşit Kataloğu 2025",
-        uyumluluk_skoru=3,
+        uyumluluk_skoru=2,
         uyumluluk_not=(
-            "Sarı pasa orta hassas — ilaçlama gerekebilir. "
-            "Kuru verim bandı geniş (250-450), ortalama yıllarda 350 civarı beklenir."
+            "Kuru alt sınır 250 kg/da — kötü yıllarda ciddi risk. "
+            "Sarı pasa orta hassas; ilaçlama maliyeti eklenince dezavantajlı. "
+            "Tavsiye bölgesi kıraç ama verim ve hastalık profili rakiplerinin gerisinde."
         ),
     ),
     # ── KARACAKURT (TARM 2022) ────────────────────────────────────────────
@@ -323,8 +335,10 @@ VARIETIES: list[VarietyInfo] = [
         kaynak="TARM Çeşit Kataloğu 2025",
         uyumluluk_skoru=4,
         uyumluluk_not=(
-            "En yüksek hektolitre ağırlığı (80-82 kg/hl). "
-            "2022 tescilli — yeni ve modern çeşit. Yüksek protein + yüksek hektolitre kombinasyonu güçlü."
+            "Orta Anadolu kıraç tescilli, 2022'nin en yeni TARM çeşitlerinden. "
+            "Kuru verim 300-450 kg/da; üst sınır iyi ama alt sınır düşük. "
+            "En yüksek hektolitre (80-82 kg/hl) + yüksek protein (%15) — kalite üstün. "
+            "Sarı pas 'orta dayanıklı'; ilaçlama gerekebilir."
         ),
     ),
     # ── BALKIR (TARM 2022) ────────────────────────────────────────────────
@@ -346,8 +360,10 @@ VARIETIES: list[VarietyInfo] = [
         kaynak="TARM Çeşit Kataloğu 2025",
         uyumluluk_skoru=3,
         uyumluluk_not=(
-            "2022 tescilli, modern çeşit. Orta verim bandı, dengeli protein. "
-            "Karacakurt ile aynı yıl — Karacakurt hektolitresi daha yüksek."
+            "Orta Anadolu kıraç tescilli, 2022 yeni nesil. "
+            "Kuru alt sınır 250 kg/da — kötü yılda ciddi risk. "
+            "Aynı yıl tescilli Karacakurt'un hektolitresi ve protein profili daha iyi; "
+            "Balkır'ı öne çıkaracak belirgin avantaj yok."
         ),
     ),
     # ── DEMİR-2000 (TARM 2000) ────────────────────────────────────────────
@@ -367,10 +383,11 @@ VARIETIES: list[VarietyInfo] = [
             "dayanıklı. Gübreye tepkisi yüksek. Kırmızı sert taneli."
         ),
         kaynak="TARM Çeşit Kataloğu 2025",
-        uyumluluk_skoru=3,
+        uyumluluk_skoru=2,
         uyumluluk_not=(
-            "Kanıtlanmış çeşit (25 yıllık). Sarı pasa orta hassas — "
-            "Bala'da hastalık baskısı varsa ilaçlama gerekir. Taban için daha uygun."
+            "Tavsiye bölgesi 'yarı taban ve taban' — kıraç için önerilmez. "
+            "Sarı pasa orta hassas, ilaçlama maliyeti. 25 yıllık çeşit; "
+            "yeni nesil alternatiflerin gerisinde kalmış. Bala kıraç için uygun değil."
         ),
     ),
     # ── TOSUNBEY (TARM 2004) ─────────────────────────────────────────────
@@ -390,10 +407,12 @@ VARIETIES: list[VarietyInfo] = [
             "1. sınıf ekmeklik kalitesi. 25 Ekim–25 Kasım ekim zamanı."
         ),
         kaynak="TARM Çeşit Kataloğu 2025",
-        uyumluluk_skoru=3,
+        uyumluluk_skoru=2,
         uyumluluk_not=(
-            "Uzun yıllardır İç Anadolu'da yaygın kullanılan güvenilir çeşit. "
-            "Sarı pasa orta hassas, ilaçlama önerilir. Ekim zamanı biraz geç (25 Eki–25 Kas)."
+            "Tavsiye bölgesi 'yarı taban ve taban' — kıraç için önerilmez. "
+            "Sarı pasa orta hassas, ilaçlama gerekir. 2004 tescilli; "
+            "Bayram/Selamibey gibi yeni nesil kıraç çeşitleri belirgin üstün. "
+            "Yaygın kullanım ≠ pilot tarla için optimal."
         ),
     ),
     # ── BAYRAKTAR-2000 (TARM 2000) ────────────────────────────────────────
@@ -413,10 +432,11 @@ VARIETIES: list[VarietyInfo] = [
             "az etkilenir. Yatmaya dayanıklı, harman kalitesi iyi."
         ),
         kaynak="TARM Kataloğu 2025 + 2014",
-        uyumluluk_skoru=3,
+        uyumluluk_skoru=2,
         uyumluluk_not=(
-            "Erkenci olması kıraç Bala için avantaj (don risksiz dolgunlaşır). "
-            "Protein oranı düşük (%10-14.5). Sürme/rastık için tohum ilaçlaması zorunlu."
+            "Tavsiye bölgesi 'marjinal, kıraç ve yarı taban' — bölge uyumu var. "
+            "Ama protein %10-14.5 düşük, 2000 tescilli eski nesil. "
+            "Erkencilik kıraçta Nisan donuna avantaj sağlar; yine de yeni nesil çeşitler önde."
         ),
     ),
     # ── GÜN-91 (TARM 1991) — 2014 kataloğu ──────────────────────────────────
@@ -437,11 +457,11 @@ VARIETIES: list[VarietyInfo] = [
             "harman kalitesi iyi. Alveograf W 220–300, sedimantasyon 35–40."
         ),
         kaynak="TARM Çeşit Kataloğu 2014",
-        uyumluluk_skoru=3,
+        uyumluluk_skoru=1,
         uyumluluk_not=(
-            "30+ yıllık kanıtlanmış çeşit. Sarı pasa hassas — Bala'da "
-            "tohum ilaçlaması ve gerektiğinde fungisit zorunlu. "
-            "Yeni nesil çeşitler (Bayram, Selamibey) verim açısından üstün."
+            "1991 tescilli, 35 yıllık çeşit. Sarı pasa hassas — Bala'da "
+            "fungisit zorunlu, ek maliyet. Verim yeni nesil çeşitlerin çok gerisinde. "
+            "Tavsiye bölgesi 'yarı taban ve taban'. Bala kıraç için önerilmez."
         ),
     ),
     # ── İKİZCE-96 (TARM 1996) — 2014 kataloğu ───────────────────────────────
@@ -462,11 +482,11 @@ VARIETIES: list[VarietyInfo] = [
             "kalitesi iyi. Alveograf W 175–250, sedimantasyon 34–50."
         ),
         kaynak="TARM Çeşit Kataloğu 2014",
-        uyumluluk_skoru=3,
+        uyumluluk_skoru=1,
         uyumluluk_not=(
-            "Olağanüstü soğuğa dayanıklılık — şiddetli kış riski olan yıllarda "
-            "güvenlik çeşidi. Sarı pasa hassas, ilaçlama gerektirir. "
-            "Verim potansiyeli yeni çeşitlerin gerisinde."
+            "1996 tescilli, 30 yıllık çeşit. Sarı pasa hassas, ilaçlama zorunlu. "
+            "Kuru verim 300-350 kg/da — yetersiz. Tavsiye bölgesi 'yüksek rakım kıraç'; "
+            "Bala rakımı (~900m) için bu avantaj anlamsız. Önerilmez."
         ),
     ),
     # ── LÜTFİBEY (TARM 2010) — 2014 kataloğu ────────────────────────────────
@@ -487,11 +507,11 @@ VARIETIES: list[VarietyInfo] = [
             "kardeşlenmesi yüksek, gübreye tepkisi iyi, yatma görülmeyen."
         ),
         kaynak="TARM Çeşit Kataloğu 2014",
-        uyumluluk_skoru=3,
+        uyumluluk_skoru=2,
         uyumluluk_not=(
-            "Sarı pasa dayanıklı — ilaç tasarrufu. İlkbahar rekabet gücü "
-            "yabancı ot baskısı olan parseller için avantaj. "
-            "Verim potansiyeli yeni nesil çeşitlerin altında."
+            "2010 tescilli, sarı pasa dayanıklı — ilaç tasarrufu olumlu. "
+            "Kuru verim 300-350 kg/da yetersiz; protein verisi yok (kaynaklarda belirtilmemiş). "
+            "Yabancı ot rekabeti kuvvetli ama bu kıraç verim sorununu telafi etmez."
         ),
     ),
     # ── KENANBEY (TARM 2009) — 2014 kataloğu ────────────────────────────────
@@ -514,9 +534,61 @@ VARIETIES: list[VarietyInfo] = [
         kaynak="TARM Çeşit Kataloğu 2014",
         uyumluluk_skoru=3,
         uyumluluk_not=(
-            "Sarı pasa dayanıklı — ilaç tasarrufu sağlar. "
-            "Su kullanım etkinliği kıraç için kritik avantaj. "
-            "Verim potansiyeli yeni nesil çeşitlerin biraz gerisinde."
+            "İç Anadolu kıraç tescilli (2009), sarı pasa dayanıklı — ilaç tasarrufu. "
+            "Su kullanım etkinliği yüksek; kıraç için doğru profil. "
+            "Kuru verim 350-400 kg/da orta düzey — yeni nesil çeşitlerin (Bayram, Selamibey) gerisinde."
+        ),
+    ),
+    # ── TANER (Bahri Dağdaş / TAGEM 2018) ────────────────────────────────────
+    VarietyInfo(
+        name="TANER",
+        tescil="2018",
+        verim_kuru="300–400",
+        verim_sulu="800–950",
+        protein="%13.5–18.2",
+        hektolitre="70.9–80.5",
+        kisa_dayaniklilik="Yüksek",
+        kuraklik="Yüksek",
+        sari_pas="Dayanıklı",
+        tavsiye_bolge="İç Anadolu ve Geçit Bölgeleri — kuru ve taban alanlar",
+        tarimsal=(
+            "Alternatif gelişme, sağlam saplı, kurak şartlara dayanıklı. "
+            "Su ve azot tepkisi iyi, eş zamanlı olgunlaşma. "
+            "Alveograf enerjisi 169–378 J, zeleny sedimantasyon 36–70 ml. "
+            "1-15 Ekim ekimi, 18-20 kg/da sertifikalı tohum önerilir."
+        ),
+        kaynak="Bahri Dağdaş/TAGEM 2018 broşürü; hayatiboga.com (sulu verim)",
+        uyumluluk_skoru=5,
+        uyumluluk_not=(
+            "Bahri Dağdaş/TAGEM tescilli; İç Anadolu kuru şartları için geliştirilmiş. "
+            "Kuru 300-400 kg/da, sulu+gübreleme ile 800-950 kg/da — azot tepkisi çok yüksek. "
+            "Sarı pasa dayanıklı, ilaç tasarrufu. Bala kıraç için birincil; sulama eklenirse potansiyel açılır."
+        ),
+    ),
+    # ── ENOLA (Tarar Un 2016) ─────────────────────────────────────────────────
+    VarietyInfo(
+        name="ENOLA",
+        tescil="2016",
+        verim_kuru="450–850 (ort. 657)",
+        verim_sulu="780–980",
+        protein="%11.2–15.6",
+        hektolitre="71.9–78.8",
+        kisa_dayaniklilik="Yüksek",
+        kuraklik="Orta–Yüksek",
+        sari_pas="Dayanıklı",
+        tavsiye_bolge="İç Anadolu — kuru ve yarı kuru koşullar",
+        tarimsal=(
+            "Kılçıklı, kışlık, sert-yarı sert taneli ekmeklik buğday. "
+            "Zeleny 28–56 ml, alveograf enerjisi 108–299 J, un verimi %65–70.2. "
+            "Yüksek verim potansiyeli, hastalığa ve dona dayanıklı."
+        ),
+        kaynak="Tarar Un ve Gıda San. (tescil no: 1919, 2016); tararun.com.tr; nesligentarim.com",
+        uyumluluk_skoru=3,
+        uyumluluk_not=(
+            "Özel sektör (Tarar Un) tescilli; resmi TARM kıraç denemesi yok. "
+            "Kıraç alt sınırı 450 kg/da makul ama protein alt sınırı (%11.2) düşük — "
+            "azot gübrelemesi doğru yapılmazsa ekmeklik kalite riski. "
+            "Sulu potansiyeli (780-980 kg/da) çok yüksek — ileride sulama açılırsa öne çıkar."
         ),
     ),
 ]
