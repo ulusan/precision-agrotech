@@ -45,7 +45,14 @@ def render_uploaded_soil(pdf_bytes: bytes) -> None:
         "etiket sonucu özetler: <b>düşük</b> ise toprak o besin açısından "
         "fakir (gübre gerekebilir), <b>ideal</b> ise sorun yok, <b>yüksek</b> "
         "ise fazlalık var. PDF'ten okunamayan değerler tahmin edilmez; "
-        "eksikse \"karar üretilmedi\" uyarısı çıkar.",
+        "eksikse \"karar üretilmedi\" uyarısı çıkar."
+        "<br><br>"
+        "<b>Doğru numune nasıl alınır?</b> Tarlada farklı noktalarda "
+        "0–20 cm derinliğinde çukurlar açılır; her noktadan alınan toprak "
+        "temiz bir kovaya konur. <b>En az 10–12 farklı noktadan</b> numune "
+        "alınmalıdır. Kovadaki topraklar iyice karıştırılır, karışımdan "
+        "yaklaşık <b>2 kg</b> ayrılarak analize gönderilir. Taş, kök ve "
+        "bitki artıkları numuneden çıkarılmalıdır.",
         icon="🧪",
         legend=(
             ("var(--ag-amber)", "düşük — eksik olabilir"),

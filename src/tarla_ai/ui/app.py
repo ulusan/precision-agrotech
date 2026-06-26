@@ -12,6 +12,7 @@ from tarla_ai.ui.components.climate_panel import render_climate_panel
 from tarla_ai.ui.components.growth_table import render_growth_table, render_nitrogen_card
 from tarla_ai.ui.components.soil_table import render_soil_table
 from tarla_ai.ui.components.uploaded_data import render_uploaded_drone, render_uploaded_soil
+from tarla_ai.ui.components.variety_panel import render_variety_panel
 from tarla_ai.ui.components.water_panel import render_water_panel
 from tarla_ai.ui.html import cap, section_head, sidebar_head
 from tarla_ai.ui.pdf_view import render_pdf_panel
@@ -109,9 +110,10 @@ def run() -> None:
         )
 
     # ── Sekmeler — her domain kendi sekmesinde (modüler) ──────
-    tab_advisory, tab_soil, tab_water, tab_climate, tab_drone, tab_cal = st.tabs([
+    tab_advisory, tab_soil, tab_variety, tab_water, tab_climate, tab_drone, tab_cal = st.tabs([
         "📋  Ne Yapmalı?",
         "🧪  Toprak",
+        "🌾  Buğday Çeşitleri",
         "💧  Sulama Suyu",
         "🌤️  Hava Durumu",
         "🛰️  Drone",
@@ -132,6 +134,10 @@ def run() -> None:
             unsafe_allow_html=True,
         )
         render_soil_table()
+
+    # ── Sekme: Buğday Çeşitleri ───────────────────────────────
+    with tab_variety:
+        render_variety_panel()
 
     # ── Sekme: Sulama Suyu ────────────────────────────────────
     with tab_water:

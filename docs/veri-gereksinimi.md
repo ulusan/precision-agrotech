@@ -39,9 +39,20 @@ EC/Tuzluluk (dS/m) · Kalsiyum (ppm) · Magnezyum (ppm) · Demir/DTPA · Bakır/
 Mangan/DTPA · Bor (sıcak su) · CEC (me/100g) · Tekstür (kum/silt/kil %)
 
 ### Numune alma (zorunlu kural)
-- **Derinlik:** 0–30 cm (buğday kök bölgesi), sabit.
-- **Kompozit numune:** Parselde zikzak 15–20 alt-noktayı karıştır → tek numune.
-- **Zaman:** Ekim öncesi.
+
+**Derinlik:** 0–20 cm (kürek/bel ile), sabit.
+
+**Adımlar:**
+1. Tarlada farklı noktalarda 0–20 cm derinliğinde çukur aç.
+2. Her noktadan alınan toprağı temiz bir kovaya koy.
+3. **En az 10–12 farklı noktadan** numune al (tarlayı temsil etmeli).
+4. Kovadaki toprakları iyice karıştır.
+5. Karışımdan yaklaşık **2 kg** toprak ayır — bu analiz numunen olur.
+6. Taş, bitki artıkları, kök ve yabancı maddelerden arındır.
+
+**Kompozit numune:** Parselde zikzak/W-şekli izleyerek 10–12 alt-noktayı birleştir → tek karışık numune.
+
+**Zaman:** Ekim öncesi.
 
 ---
 
